@@ -49,12 +49,12 @@ public enum FormatOptions
     ExcludeRootName = 0x10,
         
     /// <summary>
-    /// Flags for using a format compatible with Java editions of Minecraft.
+    /// Flags for using a format compatible with Java editions of Minecraft when writing to a file.
     /// </summary>
     JavaFile = BigEndian,
         
     /// <summary>
-    /// Flags for using a format compatible with Java editions of Minecraft.
+    /// Flags for using a format compatible with Java editions of Minecraft when transporting across a network.
     /// </summary>
     JavaNetwork = LittleEndian | ExcludeRootName,
         
@@ -64,7 +64,7 @@ public enum FormatOptions
     BedrockFile = LittleEndian,
         
     /// <summary>
-    /// Flags for using a format compatible with Bedrock editions of Minecraft when transporting across a network..
+    /// Flags for using a format compatible with Bedrock editions of Minecraft when transporting across a network.
     /// </summary>
     BedrockNetwork = LittleEndian | VarIntegers | ZigZagEncoding
 }
