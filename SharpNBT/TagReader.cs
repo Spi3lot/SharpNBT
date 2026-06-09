@@ -25,6 +25,8 @@ public class TagReader : TagIO
 
     private readonly bool leaveOpen;
 
+    private int depth;
+
     /// <summary>
     /// Creates a new instance of the <see cref="TagReader"/> class from the given <paramref name="stream"/>.
     /// </summary>
@@ -338,32 +340,44 @@ public class TagReader : TagIO
 
     private Tag ReadTag(TagType type, bool named)
     {
-        var result = OnTagEncountered(type, named);
-        if (result != null)
+        if (depth++ == 0 && ExcludeRootName)
         {
-            OnTagRead(result);
-            return result;
+            named = false;
         }
 
-        Tag tag = type switch
+        try
         {
-            TagType.End => new EndTag(),
-            TagType.Byte => ReadByte(named),
-            TagType.Short => ReadShort(named),
-            TagType.Int => ReadInt(named),
-            TagType.Long => ReadLong(named),
-            TagType.Float => ReadFloat(named),
-            TagType.Double => ReadDouble(named),
-            TagType.ByteArray => ReadByteArray(named),
-            TagType.String => ReadString(named),
-            TagType.List => ReadList(named),
-            TagType.Compound => ReadCompound(named),
-            TagType.IntArray => ReadIntArray(named),
-            TagType.LongArray => ReadLongArray(named),
-            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
-        };
-        OnTagRead(tag);
-        return tag;
+            var result = OnTagEncountered(type, named);
+            if (result != null)
+            {
+                OnTagRead(result);
+                return result;
+            }
+
+            Tag tag = type switch
+            {
+                TagType.End => new EndTag(),
+                TagType.Byte => ReadByte(named),
+                TagType.Short => ReadShort(named),
+                TagType.Int => ReadInt(named),
+                TagType.Long => ReadLong(named),
+                TagType.Float => ReadFloat(named),
+                TagType.Double => ReadDouble(named),
+                TagType.ByteArray => ReadByteArray(named),
+                TagType.String => ReadString(named),
+                TagType.List => ReadList(named),
+                TagType.Compound => ReadCompound(named),
+                TagType.IntArray => ReadIntArray(named),
+                TagType.LongArray => ReadLongArray(named),
+                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+            };
+            OnTagRead(tag);
+            return tag;
+        }
+        finally
+        {
+            depth--;
+        }
     }
 
 
