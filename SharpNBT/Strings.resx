@@ -81,4 +81,10 @@
     <data name="NegativeLengthSpecified" xml:space="preserve">
         <value>Negative length specified.</value>
     </data>
+    <data name="FormatBothBigEndianAndLittleEndian" xml:space="preserve">
+        <value>Format cannot be both big and little endian</value>
+    </data>
+    <data name="FormatNeitherBigEndianNorLittleEndian" xml:space="preserve">
+        <value>Format must be either big or little endian</value>
+    </data>
 </root>

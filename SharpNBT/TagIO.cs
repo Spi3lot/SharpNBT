@@ -54,10 +54,14 @@ public abstract class TagIO : IDisposable
     {
         BaseStream = stream ?? throw new ArgumentNullException(nameof(stream));
             
+        if (options.HasFlag(FormatOptions.BigEndian | FormatOptions.LittleEndian))
+            throw new ArgumentException(Strings.FormatBothBigEndianAndLittleEndian, nameof(options));
         if (options.HasFlag(FormatOptions.BigEndian))
             SwapEndian = BitConverter.IsLittleEndian;
         else if (options.HasFlag(FormatOptions.LittleEndian))
             SwapEndian = !BitConverter.IsLittleEndian;
+        else
+            throw new ArgumentException(Strings.FormatNeitherBigEndianNorLittleEndian, nameof(options));
             
         UseVarInt = options.HasFlag(FormatOptions.VarIntegers);
         ZigZagEncoding = options.HasFlag(FormatOptions.ZigZagEncoding);
