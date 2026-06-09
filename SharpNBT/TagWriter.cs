@@ -313,7 +313,8 @@ public class TagWriter : TagIO
             return;
 
         BaseStream.WriteByte((byte) tag.Type);
-        WriteUTF8String(tag.Name);
+        if (tag.Parent is null && !ExcludeRootName)
+            WriteUTF8String(tag.Name);
     }
         
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -43,9 +43,9 @@ public enum FormatOptions
     ZigZagEncoding = 0x08,
         
     /// <summary>
-    /// Variable-length integers will be written using ZigZag encoding.
+    /// Indicates whether the root tag's name and length prefix thereof should be omitted.
+    /// This is necessary for Minecraft versions >= 1.20.2 (Protocol 764)
     /// </summary>
-    /// <see href="http://neurocline.github.io/dev/2015/09/17/zig-zag-encoding.html"/>
     ExcludeRootName = 0x10,
         
     /// <summary>

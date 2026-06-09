@@ -34,7 +34,8 @@ public abstract class TagIO : IDisposable
     public bool ZigZagEncoding { get; }
         
     /// <summary>
-    /// Gets a flag indicating if variable-length integers will be "ZigZag encoded".
+    /// Gets a flag indicating if the root tag's name and length prefix thereof will be omitted.
+    /// This is necessary for Minecraft versions >= 1.20.2 (Protocol 764)
     /// </summary>
     public bool ExcludeRootName { get; }
         
