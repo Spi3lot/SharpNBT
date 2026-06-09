@@ -28,7 +28,7 @@ public class StringTag : Tag, IEquatable<StringTag>
     /// <inheritdoc />
     protected internal override void WriteJson(Utf8JsonWriter writer, bool named = true)
     {
-        if (named && Name != null)
+        if (named && Name is not null)
         {
             writer.WriteString(Name, Value);
         }

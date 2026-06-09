@@ -348,7 +348,7 @@ public class TagReader : TagIO
         try
         {
             var result = OnTagEncountered(type, named);
-            if (result != null)
+            if (result is not null)
             {
                 OnTagRead(result);
                 return result;

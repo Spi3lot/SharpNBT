@@ -169,7 +169,7 @@ public class CompoundTag : Tag, IDictionary<string, Tag>, ICollection<Tag>
     /// <inheritdoc />
     protected internal override void WriteJson(Utf8JsonWriter writer, bool named = true)
     {
-        if (named && Name != null)
+        if (named && Name is not null)
         {
             writer.WriteStartObject(Name);
         }
@@ -220,7 +220,7 @@ public class CompoundTag : Tag, IDictionary<string, Tag>, ICollection<Tag>
             if (recursive && value is CompoundTag child)
             {
                 var nested = child.Find<TTag>(name, recursive);
-                if (nested != null)
+                if (nested is not null)
                     return nested;
             }
         }

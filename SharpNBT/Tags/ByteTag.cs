@@ -97,7 +97,7 @@ public class ByteTag : NumericTag<byte>
     /// <inheritdoc />
     protected internal override void WriteJson(Utf8JsonWriter writer, bool named = true)
     {
-        if (named && Name != null)
+        if (named && Name is not null)
         {
             if (IsBool)
                 writer.WriteBoolean(Name, Bool);

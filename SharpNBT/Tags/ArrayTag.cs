@@ -94,7 +94,7 @@ public abstract class ArrayTag<T> : Tag, IReadOnlyList<T> where T : unmanaged, I
             if (i > 0)
                 sb.Append(',');
             sb.Append(array[i]);
-            if (suffix != null)
+            if (suffix is not null)
                 sb.Append(suffix.Value);
         }
         sb.Append(']');

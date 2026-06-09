@@ -123,7 +123,7 @@ public class ListTag : Tag, IList<Tag>
     /// <inheritdoc />
     protected internal override void WriteJson(Utf8JsonWriter writer, bool named = true)
     {
-        if (named && Name != null)
+        if (named && Name is not null)
         {
             writer.WriteStartArray(Name);
         }
