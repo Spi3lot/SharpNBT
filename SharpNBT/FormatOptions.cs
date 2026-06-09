@@ -56,7 +56,7 @@ public enum FormatOptions
     /// <summary>
     /// Flags for using a format compatible with Java editions of Minecraft when transporting across a network.
     /// </summary>
-    JavaNetwork = LittleEndian | ExcludeRootName,
+    JavaNetwork = BigEndian | ExcludeRootName,
         
     /// <summary>
     /// Flags for using a format compatible with Bedrock editions of Minecraft when writing to a file.
