@@ -34,6 +34,11 @@ public abstract class TagIO : IDisposable
     public bool ZigZagEncoding { get; }
         
     /// <summary>
+    /// Gets a flag indicating if variable-length integers will be "ZigZag encoded".
+    /// </summary>
+    public bool ExcludeRootName { get; }
+        
+    /// <summary>
     /// Gets the format to be followed for compatibility.
     /// </summary>
     public FormatOptions FormatOptions { get; }
@@ -55,6 +60,7 @@ public abstract class TagIO : IDisposable
             
         UseVarInt = options.HasFlag(FormatOptions.VarIntegers);
         ZigZagEncoding = options.HasFlag(FormatOptions.ZigZagEncoding);
+        ExcludeRootName = options.HasFlag(FormatOptions.ExcludeRootName);
     }
 
     /// <summary>

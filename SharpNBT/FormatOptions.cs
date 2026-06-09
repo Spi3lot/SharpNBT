@@ -43,9 +43,20 @@ public enum FormatOptions
     ZigZagEncoding = 0x08,
         
     /// <summary>
+    /// Variable-length integers will be written using ZigZag encoding.
+    /// </summary>
+    /// <see href="http://neurocline.github.io/dev/2015/09/17/zig-zag-encoding.html"/>
+    ExcludeRootName = 0x10,
+        
+    /// <summary>
     /// Flags for using a format compatible with Java editions of Minecraft.
     /// </summary>
-    Java = BigEndian,
+    JavaFile = BigEndian,
+        
+    /// <summary>
+    /// Flags for using a format compatible with Java editions of Minecraft.
+    /// </summary>
+    JavaNetwork = LittleEndian | ExcludeRootName,
         
     /// <summary>
     /// Flags for using a format compatible with Bedrock editions of Minecraft when writing to a file.

@@ -26,7 +26,7 @@ namespace SharpNBT.Tests
         public static CompoundTag GetTag(string filename, CompressionType compression)
         {
             using var stream = GetFile(filename, compression);
-            using var reader = new TagReader(stream, FormatOptions.Java);
+            using var reader = new TagReader(stream, FormatOptions.JavaFile);
             return reader.ReadTag<CompoundTag>();
         }
     }
